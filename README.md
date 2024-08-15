@@ -47,7 +47,7 @@ Smolitux Suite is a comprehensive, cross-platform application designed to centra
 - **Responsive Design:** Dynamically adapts to different screen sizes and resolutions.
 
 ## Project Structure
-
+```
 smolitux-suite/
 ├── public/
 │ ├── index.html
@@ -74,6 +74,7 @@ smolitux-suite/
 ├── package.json
 ├── vue.config.js
 └── README.md
+```
 
 bash
 Copy code
@@ -86,57 +87,64 @@ To get started with Smolitux Suite, follow these steps:
    ```bash
    git clone https://github.com/your-username/smolitux-suite.git
    cd smolitux-suite
+   ```
 Install dependencies:
-
-bash
-Copy code
+```
 npm install
+```
+
 Run the development server:
-
-bash
-Copy code
+```
 npm run serve
+```
+
 Build for production:
-
-bash
-Copy code
+```
 npm run build
-Run tests:
+```
 
-bash
-Copy code
+Run tests:
+```
 npm run test
+```
+
 Usage
-Task Scripting
+**Task Scripting**
 Use the left sidebar to open AI tools and create workflows.
 Drag and drop tools into the scripting canvas to build a task chain.
 Save, load, and manage workflows using the controls provided.
-Plugins
+
+**Plugins**
 Add custom plugins by following the Plugin Interface documentation.
 Register plugins using the Plugin Loader to extend the functionality of the suite.
-Smolit AI Assistant
+
+Smolit AI Assistant**
 Interact with the Smolit AI assistant via the chat interface on the right sidebar.
 Smolit can help you with tasks, provide information, or execute commands.
-Theme and Language Settings
+
+Theme and Language Settings**
 Toggle between light and dark mode using the theme switcher.
 Change the language by selecting your preferred option in the settings.
-Localization
-The Smolitux Suite supports multiple languages. Current translations include:
 
+Localization**
+The Smolitux Suite supports multiple languages. Current translations include:
+```
 English (en)
 German (de)
+```
 You can contribute additional translations by adding JSON files in the locales/ directory.
 
-Contributing
+Contributing**
 We welcome contributions! Please follow these guidelines:
 
 Fork the repository.
 Create a new branch for your feature or bugfix.
 Submit a pull request with a clear description of your changes.
-License
+
+License**
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-Contact
+Contact**
 For support or inquiries, please contact [your-email@example.com].
 
 Developed with ❤️ by the Smolitux Suite team.
