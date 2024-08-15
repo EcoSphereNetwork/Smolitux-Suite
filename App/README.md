@@ -1,3 +1,11 @@
+🚧 Under Development 🚧
+
+This repository is currently a work in progress and is actively being developed. Please note that features, functionality, and documentation may change frequently as the project evolves.
+
+Feel free to explore, but be aware that the codebase may contain unfinished features and could be subject to significant changes.
+
+Stay tuned for updates!
+
 # smolitux-suite
 
 ## Project setup
@@ -26,7 +34,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 
+🚧 Under Development 🚧
 
+This repository is currently a work in progress and is actively being developed. Please note that features, functionality, and documentation may change frequently as the project evolves.
+
+Feel free to explore, but be aware that the codebase may contain unfinished features and could be subject to significant changes.
+
+Stay tuned for updates!
 
 
 
