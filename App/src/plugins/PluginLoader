@@ -1,0 +1,11 @@
+import PluginLoader from '@/plugins/PluginLoader';
+import MyPlugin from '@/plugins/MyPlugin'; // Assume MyPlugin is an instance of PluginInterface
+
+const pluginLoader = new PluginLoader();
+
+// Register a plugin
+pluginLoader.registerPlugin(MyPlugin);
+
+// Retrieve all registered plugins
+const registeredPlugins = pluginLoader.getRegisteredPlugins();
+console.log('Registered Plugins:', registeredPlugins);
