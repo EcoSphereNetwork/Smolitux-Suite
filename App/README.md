@@ -110,30 +110,24 @@ npm run test
 ```
 
 **Usage**
-
 **Task Scripting**
-
 Use the left sidebar to open AI tools and create workflows.
 Drag and drop tools into the scripting canvas to build a task chain.
 Save, load, and manage workflows using the controls provided.
 
 **Plugins**
-
 Add custom plugins by following the Plugin Interface documentation.
 Register plugins using the Plugin Loader to extend the functionality of the suite.
 
 **Smolit AI Assistant**
-
 Interact with the Smolit AI assistant via the chat interface on the right sidebar.
 Smolit can help you with tasks, provide information, or execute commands.
 
 **Theme and Language Settings**
-
 Toggle between light and dark mode using the theme switcher.
 Change the language by selecting your preferred option in the settings.
 
 **Localization**
-
 The Smolitux Suite supports multiple languages. Current translations include:
 
 English (en)
@@ -141,7 +135,6 @@ German (de)
 You can contribute additional translations by adding JSON files in the locales/ directory.
 
 **Contributing**
-
 We welcome contributions! Please follow these guidelines:
 
 Fork the repository.
@@ -151,13 +144,11 @@ License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 **Contact**
-
 For support or inquiries, please contact [your-email@example.com].
 
 Developed with ❤️ by the Smolitux Suite team.
 
 ### **Explanation:**
-
 This `README.md` file serves as the documentation for your Smolitux Suite project. It provides an overview of the project, instructions for installation and usage, details about the project structure, and guidelines for contributing.
 
 ### **Sections:**
