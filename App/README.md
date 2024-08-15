@@ -30,9 +30,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 
-File: README.md
-markdown
-Copy code
+
 # Smolitux Suite
 
 Smolitux Suite is a comprehensive, cross-platform application designed to centralize and streamline the use of various AI tools. It provides a user-friendly interface for managing AI workflows, interacting with an AI assistant (Smolit), and integrating third-party plugins.
@@ -48,6 +46,7 @@ Smolitux Suite is a comprehensive, cross-platform application designed to centra
 
 ## Project Structure
 
+```
 smolitux-suite/
 ├── public/
 │ ├── index.html
@@ -74,9 +73,7 @@ smolitux-suite/
 ├── package.json
 ├── vue.config.js
 └── README.md
-
-bash
-Copy code
+```
 
 ## Installation
 
@@ -86,40 +83,51 @@ To get started with Smolitux Suite, follow these steps:
    ```bash
    git clone https://github.com/your-username/smolitux-suite.git
    cd smolitux-suite
+   ```
+
 Install dependencies:
 
-bash
-Copy code
+```
 npm install
+```
+
 Run the development server:
 
-bash
-Copy code
+```
 npm run serve
+```
+
 Build for production:
 
-bash
-Copy code
+```
 npm run build
+```
+
 Run tests:
 
-bash
-Copy code
+```
 npm run test
+```
+
 Usage
+
 Task Scripting
 Use the left sidebar to open AI tools and create workflows.
 Drag and drop tools into the scripting canvas to build a task chain.
 Save, load, and manage workflows using the controls provided.
+
 Plugins
 Add custom plugins by following the Plugin Interface documentation.
 Register plugins using the Plugin Loader to extend the functionality of the suite.
+
 Smolit AI Assistant
 Interact with the Smolit AI assistant via the chat interface on the right sidebar.
 Smolit can help you with tasks, provide information, or execute commands.
+
 Theme and Language Settings
 Toggle between light and dark mode using the theme switcher.
 Change the language by selecting your preferred option in the settings.
+
 Localization
 The Smolitux Suite supports multiple languages. Current translations include:
 
@@ -140,9 +148,6 @@ Contact
 For support or inquiries, please contact [your-email@example.com].
 
 Developed with ❤️ by the Smolitux Suite team.
-
-markdown
-Copy code
 
 ### **Explanation:**
 
@@ -185,5 +190,3 @@ This `README.md` file serves as the documentation for your Smolitux Suite projec
 - **Easy Setup:** Clear installation and usage instructions make it easy for others to run and contribute to the project.
 - **Structured Overview:** The project structure section helps new developers quickly understand how the codebase is organized.
 - **Contribution-Friendly:** The contributing section encourages community involvement and provides a straightforward process for submitting improvements or fixes.
-
-This `README.md` ensures that your project is well-documented, accessible, and ready for collaboration, making it easier to attract contributors and users.
