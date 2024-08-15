@@ -1,0 +1,20 @@
+{
+    "task_scripting": "Aufgaben-Scripting",
+    "available_tools": "Verfügbare Werkzeuge",
+    "drop_tools": "Werkzeuge hierher ziehen, um eine Aufgabe zu erstellen",
+    "remove": "Entfernen",
+    "run_tasks": "Aufgaben ausführen",
+    "save_workflow": "Workflow speichern",
+    "rename_workflow": "Workflow umbenennen",
+    "delete_workflow": "Workflow löschen",
+    "export_workflows": "Workflows exportieren",
+    "enter_initial_input": "Geben Sie den initialen Input für die Aufgaben ein:",
+    "enter_name_for_workflow": "Geben Sie einen Namen für diesen Workflow ein:",
+    "enter_description_for_workflow": "Geben Sie eine Beschreibung für diesen Workflow ein:",
+    "enter_new_name_for_workflow": "Geben Sie einen neuen Namen für diesen Workflow ein:",
+    "output": "Ausgabe",
+    "smolit_chat": "Smolit-Chat",
+    "type_message": "Nachricht eingeben...",
+    "send": "Senden"
+  }
+  

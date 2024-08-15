@@ -1,0 +1,14 @@
+import AIToolInterface from '@/plugins/AIToolInterface';
+import MyAIToolComponent from '@/components/MyAIToolComponent.vue';
+
+const myAITool = new AIToolInterface(
+  'My AI Tool',
+  MyAIToolComponent,
+  (input) => {
+    // Process the input and return the result
+    return `Processed: ${input}`;
+  }
+);
+
+// You can now use `myAITool` in your application, for example, adding it to a list of available tools
+this.$aiTools.push(myAITool);

@@ -1,0 +1,15 @@
+import PluginInterface from '@/plugins/PluginInterface';
+import MyPluginComponent from '@/components/MyPluginComponent.vue';
+
+const myPlugin = new PluginInterface(
+  'My Plugin',
+  MyPluginComponent,
+  () => {
+    console.log('Initializing My Plugin');
+    // Perform initialization tasks, such as setting up event listeners
+    return true; // Return true to indicate successful initialization
+  }
+);
+
+// You can now use `myPlugin` in your application, for example, adding it to a list of available plugins
+this.$plugins.push(myPlugin);
