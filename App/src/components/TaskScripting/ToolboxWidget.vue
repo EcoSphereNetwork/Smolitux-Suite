@@ -1,60 +1,56 @@
 <template>
-  <div class="toolbox">
-    <h3>{{ $t('available_tools') }}</h3>
-    <ul>
-      <li
-        v-for="aiTool in aiTools"
-        :key="aiTool.getMetadata().name"
-        draggable="true"
-        @dragstart="onDragStart(aiTool)"
-      >
-        {{ aiTool.getMetadata().name }}
-      </li>
-    </ul>
-  </div>
-</template>
+    <div class="toolbox-widget">
+      <h3>Available Tools</h3>
+      <ul>
+        <li
+          v-for="(tool, index) in aiTools"
+          :key="index"
+          draggable="true"
+          @dragstart="onDragStart(tool)"
+        >
+          {{ tool.name }}
+        </li>
+      </ul>
+    </div>
+  </template>
   
   <script>
   export default {
     props: {
       aiTools: {
         type: Array,
-        required: true
-      }
+        default: () => [],
+      },
     },
     methods: {
-      onDragStart(aiTool) {
-        event.dataTransfer.setData('tool', JSON.stringify(aiTool.getMetadata()));
-      }
-    }
+      onDragStart(tool, event) {
+        event.dataTransfer.setData('tool', JSON.stringify(tool));
+      },
+    },
   };
   </script>
   
   <style scoped>
-  .toolbox {
+  .toolbox-widget {
     padding: 10px;
-    border: 2px dashed #ccc;
-    background-color: #f9f9f9;
+    background-color: #f0f0f0;
+    border-right: 1px solid #ddd;
   }
   
-  .toolbox h3 {
-    margin-top: 0;
-  }
-  
-  .toolbox ul {
-    list-style-type: none;
+  .toolbox-widget ul {
+    list-style: none;
     padding: 0;
   }
   
-  .toolbox li {
-    padding: 8px;
-    margin-bottom: 5px;
+  .toolbox-widget li {
+    padding: 5px;
+    margin: 5px 0;
     background-color: #007bff;
     color: white;
     cursor: grab;
   }
   
-  .toolbox li:hover {
+  .toolbox-widget li:hover {
     background-color: #0056b3;
   }
   </style>

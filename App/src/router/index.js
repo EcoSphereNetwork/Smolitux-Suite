@@ -1,84 +1,41 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
-Vue.use(VueRouter);
-
-// Lazy load route components
+// Import or Lazy load route components
 const HomeView = () => import('@/views/HomeView.vue');
-const TaskScripting = () => import('@/components/TaskScripting/TaskScripting.vue'); // Check this path
-const AdminDashboard = () => import('@/views/AdminDashboard.vue'); // Check this path
+const TaskScripting = () => import('@/components/TaskScripting/TaskScripting.vue');
+const AdminDashboard = () => import('@/views/AdminDashboard.vue');
 
-
-// Define routes with meta fields and named views
+// Define routes with meta fields
 const routes = [
   {
     path: '/',
     name: 'HomeView',
     component: HomeView,
-    meta: { title: 'Home', requiresAuth: false }
+    meta: { title: 'HomeView' }
+  },
+  {
+    path: '/',
+    name: 'AdminDashboard',
+    component: AdminDashboard,
+    meta: { title: 'AdminDashboard' }
   },
   {
     path: '/task-scripting',
     name: 'TaskScripting',
     component: TaskScripting,
-    meta: { title: 'Task Scripting', requiresAuth: true }
-  },
-  {
-    path: '/admin',
-    name: 'AdminDashboard',
-    component: AdminDashboard,
-    meta: { title: 'Admin Dashboard', requiresAuth: true },
-    beforeEnter: (to, from, next) => {
-      // Example of a route-level guard
-      if (isAdminUser()) {
-        next();
-      } else {
-        next({ name: 'HomeView' });
-      }
-    }
+    meta: { title: 'Task Scripting' }
   }
 ];
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes,
-  scrollBehavior(to, from, savedPosition) {
-    // Scroll to top on route change or use saved position for back navigation
-    if (savedPosition) {
-      return savedPosition;
-    } else {
-      return { x: 0, y: 0 };
-    }
-  }
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes
 });
 
-// Global navigation guard
+// Set page title based on route meta title
 router.beforeEach((to, from, next) => {
-  // Set page title based on route meta field
   document.title = to.meta.title || 'Smolitux Suite';
-
-  // Check if route requires authentication
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!isAuthenticated()) {
-      next({ name: 'HomeView' }); // Redirect to home if not authenticated
-    } else {
-      next();
-    }
-  } else {
-    next();
-  }
+  next();
 });
-
-function isAuthenticated() {
-  // Implement your authentication check logic here
-  return !!localStorage.getItem('userToken');
-}
-
-function isAdminUser() {
-  // Implement your admin check logic here
-  const user = JSON.parse(localStorage.getItem('user'));
-  return user && user.role === 'admin';
-}
 
 export default router;

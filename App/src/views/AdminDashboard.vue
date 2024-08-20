@@ -26,7 +26,7 @@
   <style scoped>
   .admin-dashboard {
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #161b68;
   }
   
   .admin-dashboard h1 {

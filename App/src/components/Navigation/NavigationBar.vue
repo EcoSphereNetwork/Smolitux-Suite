@@ -49,7 +49,7 @@
   
   <style scoped>
   .navigation-bar {
-    background-color: #007bff;
+    background-color: #4dff00dc;
     padding: 10px;
   }
   
@@ -63,7 +63,7 @@
   .navigation-bar li {
     padding: 10px 15px;
     margin-right: 5px;
-    background-color: #0056b3;
+    background-color: #4dff00dc;
     color: white;
     cursor: pointer;
     border-radius: 4px;
@@ -81,7 +81,7 @@
     margin-left: 10px;
     background: transparent;
     border: none;
-    color: white;
+    color: rgb(4, 29, 4);
     cursor: pointer;
     font-size: 1.2em;
   }

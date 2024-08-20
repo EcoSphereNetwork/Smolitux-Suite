@@ -1,71 +1,52 @@
 <template>
-  <div
-    class="canvas"
-    @dragover.prevent
-    @drop="onDrop"
-  >
-    <h3>{{ $t('drop_tools') }}</h3>
     <div
-      v-for="(task, index) in tasks"
-      :key="index"
-      class="task"
+      class="task-canvas"
+      @dragover.prevent
+      @drop="onDrop"
     >
-      <p>{{ task.name }}</p>
-      <button @click="removeTask(index)">
-        {{ $t('remove') }}
-      </button>
+      <h3>Drop Tools Here to Create a Task</h3>
+      <div v-for="(task, index) in tasks" :key="index" class="task-item">
+        {{ task.name }}
+        <button @click="removeTask(index)">Remove</button>
+      </div>
     </div>
-  </div>
-</template>
+  </template>
   
   <script>
   export default {
     props: {
       tasks: {
         type: Array,
-        required: true
-      }
+        default: () => [],
+      },
     },
     methods: {
       onDrop(event) {
-        const toolMetadata = JSON.parse(event.dataTransfer.getData('tool'));
-        this.$emit('addTask', toolMetadata);
+        const tool = JSON.parse(event.dataTransfer.getData('tool'));
+        this.$emit('addTask', tool);
       },
       removeTask(index) {
         this.$emit('removeTask', index);
-      }
-    }
+      },
+    },
   };
   </script>
   
   <style scoped>
-  .canvas {
+  .task-canvas {
     padding: 10px;
-    border: 2px dashed #ccc;
-    background-color: #f9f9f9;
+    background-color: #fff;
+    border: 1px dashed #999;
     min-height: 200px;
   }
   
-  .task {
-    padding: 8px;
-    margin-bottom: 10px;
-    background-color: #007bff;
-    color: white;
+  .task-item {
+    background-color: #e7e7e7;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-  }
-  
-  .task button {
-    padding: 5px 10px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .task button:hover {
-    background-color: #c82333;
   }
   </style>
   

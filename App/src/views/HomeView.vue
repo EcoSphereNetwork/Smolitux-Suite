@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>{{ $t('welcome_message') }}</h1>
-    <p>{{ $t('home_description') }}</p>
+    <p>{{ $t('This is the HomeView page. Add content and style') }}</p>
 
     <div class="quick-links">
       <button @click="navigateToTaskScripting">

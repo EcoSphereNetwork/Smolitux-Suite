@@ -1,0 +1,9 @@
+
+
+- Implement the AdminDashboard
+    - with Button in NavigationBar
+- Implement the HomeView
+    - with Button in NavigationBar
+- Analyse the router/old.index.js
+    implement the funktions in the new router/index.js
+- Implement the AI-Tools

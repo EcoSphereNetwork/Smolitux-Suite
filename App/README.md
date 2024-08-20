@@ -13,9 +13,9 @@ Stay tuned for updates!
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development with electron
 ```
-npm run serve
+npm run electron:serve
 ```
 
 ### Compiles and minifies for production
@@ -105,10 +105,10 @@ Install dependencies:
 npm install
 ```
 
-Run the development server:
+Run the development server with electron:
 
 ```
-npm run serve
+npm run electron:serve
 ```
 
 Build for production:

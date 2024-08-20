@@ -1,53 +1,61 @@
 <template>
-  <nav
-    class="sidebar-left"
-    aria-label="AI Tools Sidebar"
-  >
-    <ul>
-      <li
-        v-for="tool in tools"
-        :key="tool.name"
-        role="button"
-        tabindex="0"
-        aria-label="Open AI Tool"
-        @click="openTool(tool)"
-        @keydown.enter.space="openTool(tool)"
-      >
-        {{ tool.name }}
-      </li>
-      <li
-        v-for="plugin in plugins"
-        :key="plugin.getMetadata().name"
-        role="button"
-        tabindex="0"
-        aria-label="Open Plugin"
-        @click="openPlugin(plugin)"
-        @keydown.enter.space="openPlugin(plugin)"
-      >
-        {{ plugin.getMetadata().name }}
-      </li>
-      <li
-        v-for="aiTool in aiTools"
-        :key="aiTool.getMetadata().name"
-        role="button"
-        tabindex="0"
-        aria-label="Open AI Tool"
-        @click="openAITool(aiTool)"
-        @keydown.enter.space="openAITool(aiTool)"
-      >
-        {{ aiTool.getMetadata().name }}
-      </li>
-      <li
-        role="button"
-        tabindex="0"
-        aria-label="Open Task Scripting"
-        @click="navigateToTaskScripting"
-      >
-        {{ $t('task_scripting') }}
-      </li>
-    </ul>
-  </nav>
-</template>
+    <nav
+      class="sidebar-left"
+      aria-label="AI Tools Sidebar"
+    >
+      <ul>
+        <!-- Loop through general tools -->
+        <li
+          v-for="tool in tools"
+          :key="tool.name"
+          role="button"
+          tabindex="0"
+          aria-label="Open AI Tool"
+          @click="openTool(tool)"
+          @keydown.enter.space="openTool(tool)"
+        >
+          {{ tool.name }}
+        </li>
+  
+        <!-- Loop through plugins -->
+        <li
+          v-for="plugin in plugins"
+          :key="plugin.getMetadata().name"
+          role="button"
+          tabindex="0"
+          aria-label="Open Plugin"
+          @click="openPlugin(plugin)"
+          @keydown.enter.space="openPlugin(plugin)"
+        >
+          {{ plugin.getMetadata().name }}
+        </li>
+  
+        <!-- Loop through AI tools -->
+        <li
+          v-for="aiTool in aiTools"
+          :key="aiTool.getMetadata().name"
+          role="button"
+          tabindex="0"
+          aria-label="Open AI Tool"
+          @click="openAITool(aiTool)"
+          @keydown.enter.space="openAITool(aiTool)"
+        >
+          {{ aiTool.getMetadata().name }}
+        </li>
+  
+        <!-- Navigation to Task Scripting -->
+        <li
+          role="button"
+          tabindex="0"
+          aria-label="Open Task Scripting"
+          @click="navigateToTaskScripting"
+          @keydown.enter.space="navigateToTaskScripting"
+        >
+          {{ $t('task_scripting') }}
+        </li>
+      </ul>
+    </nav>
+  </template>
   
   <script>
   export default {
@@ -64,8 +72,9 @@
       };
     },
     created() {
-      this.plugins = this.$plugins; // Assuming you have a plugin system
-      this.aiTools = this.$aiTools; // Assuming you have AI tools available globally
+      // Placeholder for plugin and AI tool systems
+      this.plugins = this.$plugins || []; // Assuming you have a plugin system
+      this.aiTools = this.$aiTools || []; // Assuming you have AI tools available globally
     },
     methods: {
       openTool(tool) {
@@ -86,7 +95,7 @@
         });
       },
       navigateToTaskScripting() {
-        this.$router.push('/task-scripting');
+        this.$emit('navigateToTaskScripting');
       }
     }
   };
@@ -95,7 +104,7 @@
   <style scoped>
   .sidebar-left {
     width: 200px;
-    background-color: #eee;
+    background-color: #72bce6;
     padding: 10px;
     display: flex;
     flex-direction: column;

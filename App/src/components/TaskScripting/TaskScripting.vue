@@ -1,82 +1,67 @@
 <template>
-  <div class="task-scripting">
-    <ToolboxWidget :ai-tools="aiTools" />
-    <TaskCanvas
-      :tasks="tasks"
-      @addTask="addTask"
-      @removeTask="removeTask"
-    />
+    <div class="task-scripting-container">
+      <!-- Toolbox Widget Area -->
+      <div class="toolbox-area">
+        <ToolboxWidget :ai-tools="aiTools" @addTask="addTask" />
+      </div>
   
-    <div class="workflow-actions">
-      <button @click="saveWorkflow">
-        {{ $t('save_workflow') }}
-      </button>
-      <button
-        v-if="selectedWorkflow !== null"
-        @click="renameWorkflow"
-      >
-        {{ $t('rename_workflow') }}
-      </button>
-      <select
-        v-model="selectedWorkflow"
-        @change="loadWorkflow"
-      >
-        <option
-          v-for="(workflow, index) in savedWorkflows"
-          :key="index"
-          :value="index"
-        >
-          {{ workflow.name }}
-        </option>
-      </select>
-      <button
-        v-if="selectedWorkflow !== null"
-        @click="deleteWorkflow"
-      >
-        {{ $t('delete_workflow') }}
-      </button>
-      <button @click="exportWorkflows">
-        {{ $t('export_workflows') }}
-      </button>
-      <input
-        type="file"
-        @change="importWorkflows"
-      >
-    </div>
+      <!-- Task Canvas Area -->
+      <div class="canvas-area">
+        <TaskCanvas :tasks="tasks" @removeTask="removeTask" />
   
-    <div v-if="output">
-      <h3>{{ $t('output') }}</h3>
-      <p>{{ output }}</p>
+        <!-- Workflow Actions -->
+        <div class="workflow-actions">
+          <button @click="runTasks">{{ $t('run_tasks') }}</button>
+          <button @click="saveWorkflow">{{ $t('save_workflow') }}</button>
+          <button v-if="selectedWorkflow !== null" @click="renameWorkflow">
+            {{ $t('rename_workflow') }}
+          </button>
+          <select v-model="selectedWorkflow" @change="loadWorkflow">
+            <option v-for="(workflow, index) in savedWorkflows" :key="index" :value="index">
+              {{ workflow.name }}
+            </option>
+          </select>
+          <button v-if="selectedWorkflow !== null" @click="deleteWorkflow">
+            {{ $t('delete_workflow') }}
+          </button>
+          <button @click="exportWorkflows">{{ $t('export_workflows') }}</button>
+          <input type="file" @change="importWorkflows" />
+        </div>
+  
+        <!-- Output Area -->
+        <div v-if="output" class="output">
+          <h3>{{ $t('output') }}</h3>
+          <p>{{ output }}</p>
+        </div>
+      </div>
     </div>
-  </div>
-</template>
+  </template>
   
   <script>
-
-import ToolboxWidget from './ToolboxWidget.vue';
-import TaskCanvas from './TaskCanvas.vue';
+  import TaskCanvas from './TaskCanvas.vue';
+  import ToolboxWidget from './ToolboxWidget.vue';
   
   export default {
     components: {
+      TaskCanvas,
       ToolboxWidget,
-      TaskCanvas
     },
     data() {
       return {
-        aiTools: [],  // This should be populated with your AI tools
+        aiTools: [], // Populated with AI tools
         tasks: [],
         output: null,
         savedWorkflows: [],
-        selectedWorkflow: null
+        selectedWorkflow: null,
       };
     },
     created() {
-      this.aiTools = this.$aiTools;
-      this.savedWorkflows = this.$store.state.workflows.savedWorkflows;
+      this.aiTools = this.$aiTools || []; // Assuming AI tools are globally available
+      this.savedWorkflows = this.$store.state.workflows?.savedWorkflows || [];
     },
     methods: {
       addTask(toolMetadata) {
-        const tool = this.aiTools.find(aiTool => aiTool.getMetadata().name === toolMetadata.name);
+        const tool = this.aiTools.find((aiTool) => aiTool.getMetadata().name === toolMetadata.name);
         if (tool) {
           this.tasks.push(tool);
         }
@@ -99,14 +84,17 @@ import TaskCanvas from './TaskCanvas.vue';
           const workflow = {
             name: workflowName,
             description: workflowDescription || '',
-            tasks: this.tasks.map(task => task.getMetadata().name)
+            tasks: this.tasks.map((task) => task.getMetadata().name),
           };
           this.$store.dispatch('workflows/saveWorkflow', workflow);
           this.savedWorkflows = this.$store.state.workflows.savedWorkflows;
         }
       },
       renameWorkflow() {
-        const newName = prompt(this.$t('enter_new_name_for_workflow'), this.savedWorkflows[this.selectedWorkflow].name);
+        const newName = prompt(
+          this.$t('enter_new_name_for_workflow'),
+          this.savedWorkflows[this.selectedWorkflow].name
+        );
         if (newName) {
           this.$store.dispatch('workflows/renameWorkflow', { index: this.selectedWorkflow, newName });
           this.savedWorkflows = this.$store.state.workflows.savedWorkflows;
@@ -114,8 +102,8 @@ import TaskCanvas from './TaskCanvas.vue';
       },
       loadWorkflow() {
         const workflow = this.savedWorkflows[this.selectedWorkflow];
-        this.tasks = workflow.tasks.map(taskName =>
-          this.aiTools.find(tool => tool.getMetadata().name === taskName)
+        this.tasks = workflow.tasks.map((taskName) =>
+          this.aiTools.find((tool) => tool.getMetadata().name === taskName)
         );
       },
       deleteWorkflow() {
@@ -142,23 +130,47 @@ import TaskCanvas from './TaskCanvas.vue';
           this.savedWorkflows = this.$store.state.workflows.savedWorkflows;
         };
         reader.readAsText(file);
-      }
-    }
+      },
+    },
   };
   </script>
   
   <style scoped>
-  .task-scripting {
+  /* Main container to take full space between sidebars and stretch vertically */
+  .task-scripting-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    box-sizing: border-box;
+    align-items: stretch;
+  }
+  
+  /* Toolbox widget on the left side */
+  .toolbox-area {
+    flex: 1; /* Takes up 1 part of the space */
+    padding: 10px;
+    border-right: 1px dashed #999;
+    box-sizing: border-box;
+  }
+  
+  /* Task canvas on the right side */
+  .canvas-area {
+    flex: 2; /* Takes up 2 parts of the space */
+    padding: 10px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   
+  /* Workflow actions area */
   .workflow-actions {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
   
   .workflow-actions button {
@@ -179,13 +191,15 @@ import TaskCanvas from './TaskCanvas.vue';
     padding: 8px;
   }
   
-  .workflow-actions input[type="file"] {
+  .workflow-actions input[type='file'] {
     margin-top: 10px;
   }
   
+  /* Output area */
   .output {
     margin-top: 20px;
     font-size: 1.2em;
+    text-align: center;
   }
   </style>
   
