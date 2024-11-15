@@ -16,6 +16,8 @@ const Typography = () =>
   import(/* webpackChunkName: "common" */ "@/pages/Typography.vue");
 const TableList = () =>
   import(/* webpackChunkName: "common" */ "@/pages/TableList.vue");
+const Suite = () =>
+  import(/* webpackChunkName: "common" */ "@/views/Suite.vue");
 
 const routes = [
   {
@@ -58,18 +60,15 @@ const routes = [
         name: "table-list",
         component: TableList,
       },
+      {
+        path: "suite",
+        name: "suite",
+        component: Suite,
+      },
     ],
   },
   { path: "*", component: NotFound },
 ];
 
-/**
- * Asynchronously load view (Webpack Lazy loading compatible)
- * The specified component must be inside the Views folder
- * @param  {string} name  the filename (basename) of the view to load.
-function view(name) {
-   var res= require('../components/Dashboard/Views/' + name + '.vue');
-   return res;
-};**/
-
 export default routes;
+
