@@ -35,7 +35,7 @@ Key Features
 ### Installation
 **Prerequisites**
 
-**Ensure you have the following installed:**
+Ensure you have the following installed:
 
     Node.js (v16 or higher)
     Vue CLI
@@ -45,22 +45,22 @@ Steps
 
     Clone the repository:
 
-git clone https://github.com/EcoSphereNetwork/Smolitux-Suite.git
-cd Smolitux-Suite
+    git clone https://github.com/EcoSphereNetwork/Smolitux-Suite.git
+    cd Smolitux-Suite
 
-**Install dependencies:**
+Install dependencies:
 
-npm install
+    npm install
 
 Run the application in development mode:
 
     npm run serve
 
-    Open your browser and navigate to http://localhost:8080.
+    # Open your browser and navigate to http://localhost:8080.
 
-**For production builds, use:**
+For production builds, use:
 
-npm run build
+    npm run build
 
 ## Usage
 
@@ -75,20 +75,20 @@ Once the application is running:
 
 Contributions are welcome! Follow these steps:
 
-    Fork the repository.
-    Create a feature branch:
+Fork the repository.
+Create a feature branch:
 
-git checkout -b feature-name
+    git checkout -b feature-name
 
 Commit your changes:
 
-git commit -m "Description of feature"
+    git commit -m "Description of feature"
 
 Push the branch:
 
     git push origin feature-name
 
-    Open a Pull Request.
+    # Open a Pull Request.
 
 Refer to the CONTRIBUTING.md for more details.
 License
