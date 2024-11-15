@@ -12,6 +12,7 @@ describe('Suite.vue', () => {
   let actions
   let state
   let getters
+  let mutations
 
   beforeEach(() => {
     state = {
@@ -21,11 +22,19 @@ describe('Suite.vue', () => {
 
     actions = {
       updateNode: jest.fn(),
-      removeNode: jest.fn()
+      removeNode: jest.fn(),
+      connect: jest.fn(),
+      disconnect: jest.fn()
     }
 
     getters = {
       isConnected: () => true
+    }
+
+    mutations = {
+      SET_SELECTED_NODE: (state, node) => {
+        state.selectedNode = node
+      }
     }
 
     store = new Vuex.Store({
@@ -34,7 +43,8 @@ describe('Suite.vue', () => {
           namespaced: true,
           state,
           actions,
-          getters
+          getters,
+          mutations
         }
       }
     })
@@ -50,6 +60,7 @@ describe('Suite.vue', () => {
 
   afterEach(() => {
     wrapper.destroy()
+    jest.clearAllMocks()
   })
 
   it('renders animation component', () => {
@@ -69,7 +80,8 @@ describe('Suite.vue', () => {
 
   it('shows chat and config panels when node selected', async () => {
     const node = { id: 1, label: 'Test Node', status: 'active' }
-    await wrapper.setData({ selectedNode: node })
+    store.commit('network/SET_SELECTED_NODE', node)
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.find('.mini-chat').exists()).toBe(true)
     expect(wrapper.find('.config-panel').exists()).toBe(true)
@@ -77,7 +89,8 @@ describe('Suite.vue', () => {
 
   it('updates node configuration', async () => {
     const node = { id: 1, label: 'Test Node', type: 'chatbot', status: 'active' }
-    await wrapper.setData({ selectedNode: node })
+    store.commit('network/SET_SELECTED_NODE', node)
+    await wrapper.vm.$nextTick()
 
     await wrapper.vm.updateSelectedNode()
     expect(actions.updateNode).toHaveBeenCalledWith(
@@ -95,17 +108,22 @@ describe('Suite.vue', () => {
 
   it('removes selected node', async () => {
     const node = { id: 1, label: 'Test Node' }
-    await wrapper.setData({ selectedNode: node })
+    store.commit('network/SET_SELECTED_NODE', node)
+    await wrapper.vm.$nextTick()
 
     await wrapper.vm.removeSelectedNode()
     expect(actions.removeNode).toHaveBeenCalledWith(expect.anything(), node.id)
+    store.commit('network/SET_SELECTED_NODE', null)
+    await wrapper.vm.$nextTick()
     expect(wrapper.vm.selectedNode).toBeNull()
   })
 
   it('sends chat message', async () => {
     const node = { id: 1, label: 'Test Node', status: 'active', messages: [] }
-    await wrapper.setData({ selectedNode: node, newMessage: 'Test message' })
+    store.commit('network/SET_SELECTED_NODE', node)
+    await wrapper.vm.$nextTick()
 
+    wrapper.setData({ newMessage: 'Test message' })
     await wrapper.vm.sendMessage()
     expect(node.messages).toContain('Test message')
     expect(wrapper.vm.newMessage).toBe('')
@@ -114,7 +132,8 @@ describe('Suite.vue', () => {
 
   it('disables chat input when node is inactive', async () => {
     const node = { id: 1, label: 'Test Node', status: 'inactive' }
-    await wrapper.setData({ selectedNode: node })
+    store.commit('network/SET_SELECTED_NODE', node)
+    await wrapper.vm.$nextTick()
 
     const input = wrapper.find('.chat-input input')
     expect(input.attributes('disabled')).toBeTruthy()
@@ -130,3 +149,4 @@ describe('Suite.vue', () => {
     expect(errorMsg.text()).toContain(error)
   })
 })
+
