@@ -19,17 +19,17 @@ A modular visualization platform designed to simplify the management and monitor
 The primary purpose of Smolitux-Suite is to offer an intuitive and responsive interface for managing complex AI systems. It serves organizations that rely on distributed architectures, making it easier to visualize and manage relationships between components, monitor performance, and handle real-time updates seamlessly.
 Key Features
 
-- Network Hierarchy Visualization:
+- **Network Hierarchy Visualization:**
       Interactive visualization of distributed AI system components.
-- Real-Time Monitoring:
+- **Real-Time Monitoring:**
       Live status updates of system components via WebSocket.
-- Dynamic Route Management:
+- **Dynamic Route Management:**
       Visual tools for managing connections between system components.
-- Integrated Chat Window:
+- **Integrated Chat Window:**
       Functionality to interact with components in real time.
-- Configuration Interface:
+- **Configuration Interface:**
       User-friendly menus for configuring system parameters.
-- Responsive Design:
+- **Responsive Design:**
       Adapted to various screen sizes and device types.
 
 ### Installation
