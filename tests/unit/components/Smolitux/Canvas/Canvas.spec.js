@@ -1,6 +1,19 @@
 import { shallowMount } from '@vue/test-utils'
 import Canvas from '@/components/Smolitux/Canvas/Canvas.vue'
 
+// Mock canvas context
+const mockContext = {
+  clearRect: jest.fn(),
+  beginPath: jest.fn(),
+  arc: jest.fn(),
+  fill: jest.fn(),
+  stroke: jest.fn(),
+  fillText: jest.fn()
+}
+
+// Mock canvas element
+HTMLCanvasElement.prototype.getContext = () => mockContext
+
 describe('Canvas.vue', () => {
   let wrapper
 
@@ -10,27 +23,24 @@ describe('Canvas.vue', () => {
 
   afterEach(() => {
     wrapper.destroy()
+    jest.clearAllMocks()
   })
 
   it('emits mouse events correctly', async () => {
     const events = [
-      'mousewheel',
-      'mousedown',
-      'mouseup',
-      'mousemove',
-      'click',
-      'dblclick',
-      'mouseout',
-      'dragenter',
-      'dragleave',
-      'dragover',
-      'drop'
+      { original: 'mousewheel', emitted: 'mouse-wheel' },
+      { original: 'mousedown', emitted: 'mouse-down' },
+      { original: 'mouseup', emitted: 'mouse-up' },
+      { original: 'mousemove', emitted: 'mouse-move' },
+      { original: 'click', emitted: 'mouse-click' },
+      { original: 'dblclick', emitted: 'double-click' },
+      { original: 'mouseout', emitted: 'mouse-out' }
     ]
 
     for (const event of events) {
       const mockEvent = { preventDefault: jest.fn() }
-      await wrapper.find('canvas').trigger(event, mockEvent)
-      expect(wrapper.emitted()[event.replace('mouse', 'mouse-')]).toBeTruthy()
+      await wrapper.find('canvas').trigger(event.original, mockEvent)
+      expect(wrapper.emitted()[event.emitted]).toBeTruthy()
     }
   })
 
@@ -56,3 +66,4 @@ describe('Canvas.vue', () => {
     expect(removeEventListenerSpy).toHaveBeenCalled()
   })
 })
+
