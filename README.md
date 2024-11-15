@@ -43,7 +43,7 @@ Ensure you have the following installed:
 
 Steps
 
-    Clone the repository:
+Clone the repository:
 
     git clone https://github.com/EcoSphereNetwork/Smolitux-Suite.git
     cd Smolitux-Suite
