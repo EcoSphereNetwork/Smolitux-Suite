@@ -1,36 +1,70 @@
 # Smolitux-Suite
 
-A modular visualization platform designed to simplify the management and monitoring of distributed AI infrastructures. Built on Vue.js with the vue-black-dashboard template, Smolitux-Suite provides an interactive GUI for visualizing network hierarchies, real-time status updates, and dynamic routes between chatbots, LLM servers, and databases.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+## ToDo to fix errors:
 
-## Features
+**NEXT PROMPT**
 
-- **Network Hierarchy Visualization**: Interactive visualization of distributed AI system components
-- **Real-Time Monitoring**: Live status updates of system components via WebSocket
-- **Dynamic Route Management**: Visual management of connections between system components
-- **Mini-Chat Window**: Integrated chat functionality for component communication
-- **Configuration Interface**: User-friendly menus for system configuration
-- **Responsive Design**: Adapts to different screen sizes and devices
+Fix this errors and complete the upgrade:
+
+Compiled with problems:
+ERROR
+Cannot find module 'vue2-transitions'
+webpackMissingModule@webpack-internal:///./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/layout/dashboard/TopNavbar.vue?vue&type=script&lang=js:2:50
+@webpack-internal:///./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/layout/dashboard/TopNavbar.vue?vue&type=script&lang=js:2:141
+./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/layout/dashboard/TopNavbar.vue?vue&type=script&lang=js@http://localhost:8081/js/app.js:261:1
+__webpack_require__@http://localhost:8081/js/app.js:2001:32
+fn@http://localhost:8081/js/app.js:2252:21
+@webpack-internal:///./src/layout/dashboard/TopNavbar.vue?vue&type=script&lang=js:5:231
+./src/layout/dashboard/TopNavbar.vue?vue&type=script&lang=js@http://localhost:8081/js/app.js:1306:1
+__webpack_require__@http://localhost:8081/js/app.js:2001:32
+fn@http://localhost:8081/js/app.js:2252:21
+@webpack-internal:///./src/layout/dashboard/TopNavbar.vue:3:115
+./src/layout/dashboard/TopNavbar.vue@http://localhost:8081/js/app.js:1042:1
+__webpack_require__@http://localhost:8081/js/app.js:2001:32
+fn@http://localhost:8081/js/app.js:2252:21
+@webpack-internal:///./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/layout/dashboard/DashboardLayout.vue?vue&type=script&lang=js:2:91
+./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/layout/dashboard/DashboardLayout.vue?vue&type=script&lang=js@http://localhost:8081/js/app.js:239:1
+__webpack_require__@http://localhost:8081/js/app.js:2001:32
+fn@http://localhost:8081/js/app.js:2252:21
+@webpack-internal:///./src/layout/dashboard/DashboardLayout.vue?vue&type=script&lang=js:5:237
+./src/layout/dashboard/DashboardLayout.vue?vue&type=script&lang=js@http://localhost:8081/js/app.js:1284:1
+__webpack_require__@http://localhost:8081/js/app.js:2001:32
+fn@http://localhost:8081/js/app.js:2252:21
+@webpack-internal:///./src/layout/dashboard/DashboardLayout.vue:3:121
+./src/layout/dashboard/DashboardLayout.vue@http://localhost:8081/js/app.js:1020:1
+__webpack_require__@http://localhost:8081/js/app.js:2001:32
+fn@http://localhost:8081/js/app.js:2252:21
+@webpack-internal:///./src/router/routes.js:2:114
+./src/router/routes.js@http://localhost:8081/js/app.js:679:1
+__webpack_require__@http://localhost:8081/js/app.js:2001:32
+fn@http://localhost:8081/js/app.js:2252:21
+@webpack-internal:///./src/router/index.js:3:84
+./src/router/index.js@http://localhost:8081/js/app.js:668:1
+__webpack_require__@http://localhost:8081/js/app.js:2001:32
+fn@http://localhost:8081/js/app.js:2252:21
+@webpack-internal:///./src/main.js:4:90
+./src/main.js@http://localhost:8081/js/app.js:602:1
+__webpack_require__@http://localhost:8081/js/app.js:2001:32
+__webpack_exports__<@http://localhost:8081/js/app.js:3172:109
+__webpack_require__.O@http://localhost:8081/js/app.js:2043:23
+@http://localhost:8081/js/app.js:3173:53
+@http://localhost:8081/js/app.js:3175:12
+ERROR in ./src/components/BaseAlert.vue?vue&type=script&lang=js (./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/BaseAlert.vue?vue&type=script&lang=js) 1:0-50
+Module not found: Error: Can't resolve 'vue2-transitions' in '/home/dev/Data/Suite_branch/Smolitux-Suite/src/components'
+ERROR in ./src/components/Modal.vue?vue&type=script&lang=js (./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/Modal.vue?vue&type=script&lang=js) 1:0-54
+Module not found: Error: Can't resolve 'vue2-transitions' in '/home/dev/Data/Suite_branch/Smolitux-Suite/src/components'
+ERROR in ./src/layout/dashboard/Content.vue?vue&type=script&lang=js (./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/layout/dashboard/Content.vue?vue&type=script&lang=js) 1:0-50
+Module not found: Error: Can't resolve 'vue2-transitions' in '/home/dev/Data/Suite_branch/Smolitux-Suite/src/layout/dashboard'
+ERROR in ./src/layout/dashboard/TopNavbar.vue?vue&type=script&lang=js (./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/layout/dashboard/TopNavbar.vue?vue&type=script&lang=js) 1:0-54
+Module not found: Error: Can't resolve 'vue2-transitions' in '/home/dev/Data/Suite_branch/Smolitux-Suite/src/layout/dashboard'
+ERROR in ./node_modules/vue-chartjs/dist/index.js 1:0-185
+Module not found: Error: Package path ./dist/Chart.js is not exported from package /home/dev/Data/Suite_branch/Smolitux-Suite/node_modules/chart.js (see exports field in /home/dev/Data/Suite_branch/Smolitux-Suite/node_modules/chart.js/package.json) 
 
 
-### Project Overview
 
-The primary purpose of Smolitux-Suite is to offer an intuitive and responsive interface for managing complex AI systems. It serves organizations that rely on distributed architectures, making it easier to visualize and manage relationships between components, monitor performance, and handle real-time updates seamlessly.
-Key Features
+##########################################################
 
-- **Network Hierarchy Visualization:**
-      Interactive visualization of distributed AI system components.
-- **Real-Time Monitoring:**
-      Live status updates of system components via WebSocket.
-- **Dynamic Route Management:**
-      Visual tools for managing connections between system components.
-- **Integrated Chat Window:**
-      Functionality to interact with components in real time.
-- **Configuration Interface:**
-      User-friendly menus for configuring system parameters.
-- **Responsive Design:**
-      Adapted to various screen sizes and device types.
 
 ### Installation
 **Prerequisites**
