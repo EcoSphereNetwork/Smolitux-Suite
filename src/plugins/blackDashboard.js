@@ -10,11 +10,12 @@ import "@/assets/css/nucleo-icons.css";
 import "@/assets/demo/demo.css";
 
 export default {
-  install(Vue) {
-    Vue.use(GlobalComponents);
-    Vue.use(GlobalDirectives);
-    Vue.use(SideBar);
-    Vue.use(Notify);
-    Vue.use(RTLPlugin);
+  install(app) {
+    app.use(GlobalComponents);
+    app.use(GlobalDirectives);
+    app.use(SideBar);
+    app.use(Notify);
+    app.use(RTLPlugin);
   },
 };
+

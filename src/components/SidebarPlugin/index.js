@@ -1,26 +1,22 @@
 import Sidebar from "./SideBar.vue";
 import SidebarLink from "./SidebarLink";
+import { reactive } from 'vue'
 
-const SidebarStore = {
+const SidebarStore = reactive({
   showSidebar: false,
   sidebarLinks: [],
   displaySidebar(value) {
     this.showSidebar = value;
   },
-};
+});
 
 const SidebarPlugin = {
-  install(Vue) {
-    let app = new Vue({
-      data: {
-        sidebarStore: SidebarStore,
-      },
-    });
-
-    Vue.prototype.$sidebar = app.sidebarStore;
-    Vue.component("side-bar", Sidebar);
-    Vue.component("sidebar-link", SidebarLink);
+  install(app) {
+    app.config.globalProperties.$sidebar = SidebarStore;
+    app.component("side-bar", Sidebar);
+    app.component("sidebar-link", SidebarLink);
   },
 };
 
 export default SidebarPlugin;
+

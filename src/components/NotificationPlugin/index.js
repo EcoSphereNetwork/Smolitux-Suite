@@ -1,6 +1,7 @@
 import Notifications from "./Notifications.vue";
+import { reactive } from 'vue';
 
-const NotificationStore = {
+const NotificationStore = reactive({
   state: [], // here the notifications will be added
   settings: {
     overlap: false,
@@ -42,23 +43,13 @@ const NotificationStore = {
       this.addNotification(notification);
     }
   },
-};
+});
 
 const NotificationsPlugin = {
-  install(Vue, options) {
-    let app = new Vue({
-      data: {
-        notificationStore: NotificationStore,
-      },
-      methods: {
-        notify(notification) {
-          this.notificationStore.notify(notification);
-        },
-      },
-    });
-    Vue.prototype.$notify = app.notify;
-    Vue.prototype.$notifications = app.notificationStore;
-    Vue.component("Notifications", Notifications);
+  install(app, options) {
+    app.config.globalProperties.$notify = NotificationStore.notify.bind(NotificationStore);
+    app.config.globalProperties.$notifications = NotificationStore;
+    app.component("Notifications", Notifications);
     if (options) {
       NotificationStore.setOptions(options);
     }
@@ -66,3 +57,4 @@ const NotificationsPlugin = {
 };
 
 export default NotificationsPlugin;
+
