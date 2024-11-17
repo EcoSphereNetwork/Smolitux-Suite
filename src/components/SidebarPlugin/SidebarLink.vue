@@ -4,7 +4,7 @@
       :is="tag"
       class="nav-link"
       v-bind="$attrs"
-      @click.native="hideSidebar"
+      @click="hideSidebar"
     >
       <slot>
         <i v-if="icon" :class="icon"></i>
@@ -14,20 +14,11 @@
   </li>
 </template>
 <script>
+import { inject, onMounted, onBeforeUnmount } from 'vue'
+
 export default {
   name: "sidebar-link",
   inheritAttrs: false,
-  inject: {
-    autoClose: {
-      default: true,
-    },
-    addLink: {
-      default: () => {},
-    },
-    removeLink: {
-      default: () => {},
-    },
-  },
   props: {
     name: String,
     icon: String,
@@ -36,29 +27,40 @@ export default {
       default: "router-link",
     },
   },
-  methods: {
-    hideSidebar() {
-      if (this.autoClose) {
-        this.$sidebar.displaySidebar(false);
+  setup(props) {
+    const autoClose = inject('autoClose', true)
+    const addLink = inject('addLink', () => {})
+    const removeLink = inject('removeLink', () => {})
+    const $sidebar = inject('$sidebar')
+
+    const hideSidebar = () => {
+      if (autoClose) {
+        $sidebar.displaySidebar(false)
       }
-    },
-    isActive() {
-      return this.$el.classList.contains("active");
-    },
-  },
-  mounted() {
-    if (this.addLink) {
-      this.addLink(this);
     }
-  },
-  beforeDestroy() {
-    if (this.$el && this.$el.parentNode) {
-      this.$el.parentNode.removeChild(this.$el);
+
+    const isActive = () => {
+      return document.querySelector('.nav-link.active') !== null
     }
-    if (this.removeLink) {
-      this.removeLink(this);
+
+    onMounted(() => {
+      if (addLink) {
+        addLink({ isActive })
+      }
+    })
+
+    onBeforeUnmount(() => {
+      if (removeLink) {
+        removeLink({ isActive })
+      }
+    })
+
+    return {
+      hideSidebar,
+      isActive
     }
-  },
-};
+  }
+}
 </script>
 <style></style>
+
