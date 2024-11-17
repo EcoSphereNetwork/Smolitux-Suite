@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <card type="chart">
-          <template slot="header">
+          <template #header>
             <div class="row">
               <div class="col-sm-6" :class="isRTL ? 'text-right' : 'text-left'">
                 <h5 class="card-category">
@@ -55,7 +55,7 @@
     <div class="row">
       <div class="col-lg-4" :class="{ 'text-right': isRTL }">
         <card type="chart">
-          <template slot="header">
+          <template #header>
             <h5 class="card-category">{{ $t("dashboard.totalShipments") }}</h5>
             <h3 class="card-title">
               <i class="tim-icons icon-bell-55 text-primary"></i> 763,215
@@ -76,7 +76,7 @@
       </div>
       <div class="col-lg-4" :class="{ 'text-right': isRTL }">
         <card type="chart">
-          <template slot="header">
+          <template #header>
             <h5 class="card-category">{{ $t("dashboard.dailySales") }}</h5>
             <h3 class="card-title">
               <i class="tim-icons icon-delivery-fast text-info"></i> 3,500€
@@ -96,7 +96,7 @@
       </div>
       <div class="col-lg-4" :class="{ 'text-right': isRTL }">
         <card type="chart">
-          <template slot="header">
+          <template #header>
             <h5 class="card-category">{{ $t("dashboard.completedTasks") }}</h5>
             <h3 class="card-title">
               <i class="tim-icons icon-send text-success"></i> 12,100K
@@ -118,7 +118,7 @@
     <div class="row">
       <div class="col-lg-6 col-md-12">
         <card type="tasks" :header-classes="{ 'text-right': isRTL }">
-          <template slot="header">
+          <template #header>
             <h6 class="title d-inline">
               {{ $t("dashboard.tasks", { count: 5 }) }}
             </h6>
@@ -130,7 +130,9 @@
               aria-label="Settings menu"
               :class="{ 'float-left': isRTL }"
             >
-              <i slot="title" class="tim-icons icon-settings-gear-63"></i>
+              <template #title>
+                <i class="tim-icons icon-settings-gear-63"></i>
+              </template>
               <a class="dropdown-item" href="#pablo">{{
                 $t("dashboard.dropdown.action")
               }}</a>
@@ -149,9 +151,11 @@
       </div>
       <div class="col-lg-6 col-md-12">
         <card class="card" :header-classes="{ 'text-right': isRTL }">
-          <h4 slot="header" class="card-title">
-            {{ $t("dashboard.simpleTable") }}
-          </h4>
+          <template #header>
+            <h4 class="card-title">
+              {{ $t("dashboard.simpleTable") }}
+            </h4>
+          </template>
           <div class="table-responsive">
             <user-table></user-table>
           </div>
@@ -168,6 +172,10 @@ import TaskList from "./Dashboard/TaskList";
 import UserTable from "./Dashboard/UserTable";
 import config from "@/config";
 
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useRoute } from 'vue-router';
+
 export default {
   components: {
     LineChart,
@@ -175,178 +183,160 @@ export default {
     TaskList,
     UserTable,
   },
-  data() {
-    return {
-      bigLineChart: {
-        allData: [
-          [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100],
-          [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120],
-          [60, 80, 65, 130, 80, 105, 90, 130, 70, 115, 60, 130],
-        ],
-        activeIndex: 0,
-        chartData: {
-          datasets: [{}],
-          labels: [
-            "JAN",
-            "FEB",
-            "MAR",
-            "APR",
-            "MAY",
-            "JUN",
-            "JUL",
-            "AUG",
-            "SEP",
-            "OCT",
-            "NOV",
-            "DEC",
-          ],
-        },
-        extraOptions: chartConfigs.purpleChartOptions,
-        gradientColors: config.colors.primaryGradient,
-        gradientStops: [1, 0.4, 0],
-        categories: [],
-      },
-      purpleLineChart: {
-        extraOptions: chartConfigs.purpleChartOptions,
-        chartData: {
-          labels: ["JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
-          datasets: [
-            {
-              label: "Data",
-              fill: true,
-              borderColor: config.colors.primary,
-              borderWidth: 2,
-              borderDash: [],
-              borderDashOffset: 0.0,
-              pointBackgroundColor: config.colors.primary,
-              pointBorderColor: "rgba(255,255,255,0)",
-              pointHoverBackgroundColor: config.colors.primary,
-              pointBorderWidth: 20,
-              pointHoverRadius: 4,
-              pointHoverBorderWidth: 15,
-              pointRadius: 4,
-              data: [80, 100, 70, 80, 120, 80],
-            },
-          ],
-        },
-        gradientColors: config.colors.primaryGradient,
-        gradientStops: [1, 0.2, 0],
-      },
-      greenLineChart: {
-        extraOptions: chartConfigs.greenChartOptions,
-        chartData: {
-          labels: ["JUL", "AUG", "SEP", "OCT", "NOV"],
-          datasets: [
-            {
-              label: "My First dataset",
-              fill: true,
-              borderColor: config.colors.danger,
-              borderWidth: 2,
-              borderDash: [],
-              borderDashOffset: 0.0,
-              pointBackgroundColor: config.colors.danger,
-              pointBorderColor: "rgba(255,255,255,0)",
-              pointHoverBackgroundColor: config.colors.danger,
-              pointBorderWidth: 20,
-              pointHoverRadius: 4,
-              pointHoverBorderWidth: 15,
-              pointRadius: 4,
-              data: [90, 27, 60, 12, 80],
-            },
-          ],
-        },
-        gradientColors: [
-          "rgba(66,134,121,0.15)",
-          "rgba(66,134,121,0.0)",
-          "rgba(66,134,121,0)",
-        ],
-        gradientStops: [1, 0.4, 0],
-      },
-      blueBarChart: {
-        extraOptions: chartConfigs.barChartOptions,
-        chartData: {
-          labels: ["USA", "GER", "AUS", "UK", "RO", "BR"],
-          datasets: [
-            {
-              label: "Countries",
-              fill: true,
-              borderColor: config.colors.info,
-              borderWidth: 2,
-              borderDash: [],
-              borderDashOffset: 0.0,
-              data: [53, 20, 10, 80, 100, 45],
-            },
-          ],
-        },
-        gradientColors: config.colors.primaryGradient,
-        gradientStops: [1, 0.4, 0],
-      },
-    };
-  },
-  computed: {
-    enableRTL() {
-      return this.$route.query.enableRTL;
-    },
-    isRTL() {
-      return this.$rtl.isRTL;
-    },
-    bigLineChartCategories() {
-      return this.$t("dashboard.chartCategories");
-    },
-  },
-  methods: {
-    initBigChart(index) {
-      let chartData = {
-        datasets: [
-          {
-            fill: true,
-            borderColor: config.colors.primary,
-            borderWidth: 2,
-            borderDash: [],
-            borderDashOffset: 0.0,
-            pointBackgroundColor: config.colors.primary,
-            pointBorderColor: "rgba(255,255,255,0)",
-            pointHoverBackgroundColor: config.colors.primary,
-            pointBorderWidth: 20,
-            pointHoverRadius: 4,
-            pointHoverBorderWidth: 15,
-            pointRadius: 4,
-            data: this.bigLineChart.allData[index],
-          },
-        ],
+  setup() {
+    const i18n = useI18n();
+    const route = useRoute();
+    const bigChart = ref(null);
+
+    const bigLineChart = ref({
+      allData: [
+        [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100],
+        [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120],
+        [60, 80, 65, 130, 80, 105, 90, 130, 70, 115, 60, 130],
+      ],
+      activeIndex: 0,
+      chartData: {
+        datasets: [{}],
         labels: [
-          "JAN",
-          "FEB",
-          "MAR",
-          "APR",
-          "MAY",
-          "JUN",
-          "JUL",
-          "AUG",
-          "SEP",
-          "OCT",
-          "NOV",
-          "DEC",
+          "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+          "JUL", "AUG", "SEP", "OCT", "NOV", "DEC",
+        ],
+      },
+      extraOptions: chartConfigs.purpleChartOptions,
+      gradientColors: config.colors.primaryGradient,
+      gradientStops: [1, 0.4, 0],
+      categories: [],
+    });
+
+    const purpleLineChart = ref({
+      extraOptions: chartConfigs.purpleChartOptions,
+      chartData: {
+        labels: ["JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+        datasets: [{
+          label: "Data",
+          fill: true,
+          borderColor: config.colors.primary,
+          borderWidth: 2,
+          borderDash: [],
+          borderDashOffset: 0.0,
+          pointBackgroundColor: config.colors.primary,
+          pointBorderColor: "rgba(255,255,255,0)",
+          pointHoverBackgroundColor: config.colors.primary,
+          pointBorderWidth: 20,
+          pointHoverRadius: 4,
+          pointHoverBorderWidth: 15,
+          pointRadius: 4,
+          data: [80, 100, 70, 80, 120, 80],
+        }],
+      },
+      gradientColors: config.colors.primaryGradient,
+      gradientStops: [1, 0.2, 0],
+    });
+
+    const greenLineChart = ref({
+      extraOptions: chartConfigs.greenChartOptions,
+      chartData: {
+        labels: ["JUL", "AUG", "SEP", "OCT", "NOV"],
+        datasets: [{
+          label: "My First dataset",
+          fill: true,
+          borderColor: config.colors.danger,
+          borderWidth: 2,
+          borderDash: [],
+          borderDashOffset: 0.0,
+          pointBackgroundColor: config.colors.danger,
+          pointBorderColor: "rgba(255,255,255,0)",
+          pointHoverBackgroundColor: config.colors.danger,
+          pointBorderWidth: 20,
+          pointHoverRadius: 4,
+          pointHoverBorderWidth: 15,
+          pointRadius: 4,
+          data: [90, 27, 60, 12, 80],
+        }],
+      },
+      gradientColors: [
+        "rgba(66,134,121,0.15)",
+        "rgba(66,134,121,0.0)",
+        "rgba(66,134,121,0)",
+      ],
+      gradientStops: [1, 0.4, 0],
+    });
+
+    const blueBarChart = ref({
+      extraOptions: chartConfigs.barChartOptions,
+      chartData: {
+        labels: ["USA", "GER", "AUS", "UK", "RO", "BR"],
+        datasets: [{
+          label: "Countries",
+          fill: true,
+          borderColor: config.colors.info,
+          borderWidth: 2,
+          borderDash: [],
+          borderDashOffset: 0.0,
+          data: [53, 20, 10, 80, 100, 45],
+        }],
+      },
+      gradientColors: config.colors.primaryGradient,
+      gradientStops: [1, 0.4, 0],
+    });
+
+    const enableRTL = computed(() => route.query.enableRTL);
+    const isRTL = computed(() => i18n.rtl);
+    const bigLineChartCategories = computed(() => i18n.t("dashboard.chartCategories"));
+
+    const initBigChart = (index) => {
+      let chartData = {
+        datasets: [{
+          fill: true,
+          borderColor: config.colors.primary,
+          borderWidth: 2,
+          borderDash: [],
+          borderDashOffset: 0.0,
+          pointBackgroundColor: config.colors.primary,
+          pointBorderColor: "rgba(255,255,255,0)",
+          pointHoverBackgroundColor: config.colors.primary,
+          pointBorderWidth: 20,
+          pointHoverRadius: 4,
+          pointHoverBorderWidth: 15,
+          pointRadius: 4,
+          data: bigLineChart.value.allData[index],
+        }],
+        labels: [
+          "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+          "JUL", "AUG", "SEP", "OCT", "NOV", "DEC",
         ],
       };
-      this.$refs.bigChart.updateGradients(chartData);
-      this.bigLineChart.chartData = chartData;
-      this.bigLineChart.activeIndex = index;
-    },
-  },
-  mounted() {
-    this.i18n = this.$i18n;
-    if (this.enableRTL) {
-      this.i18n.locale = "ar";
-      this.$rtl.enableRTL();
-    }
-    this.initBigChart(0);
-  },
-  beforeDestroy() {
-    if (this.$rtl.isRTL) {
-      this.i18n.locale = "en";
-      this.$rtl.disableRTL();
-    }
+      bigChart.value.updateGradients(chartData);
+      bigLineChart.value.chartData = chartData;
+      bigLineChart.value.activeIndex = index;
+    };
+
+    onMounted(() => {
+      if (enableRTL.value) {
+        i18n.locale = "ar";
+        i18n.rtl = true;
+      }
+      initBigChart(0);
+    });
+
+    onBeforeUnmount(() => {
+      if (i18n.rtl) {
+        i18n.locale = "en";
+        i18n.rtl = false;
+      }
+    });
+
+    return {
+      bigLineChart,
+      purpleLineChart,
+      greenLineChart,
+      blueBarChart,
+      enableRTL,
+      isRTL,
+      bigLineChartCategories,
+      initBigChart,
+      bigChart,
+    };
   },
 };
 </script>

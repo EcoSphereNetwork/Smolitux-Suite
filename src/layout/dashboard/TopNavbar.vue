@@ -36,15 +36,13 @@
         <span class="navbar-toggler-bar navbar-kebab"></span>
       </button>
 
-      <collapse-transition>
+      <transition-expand>
         <div class="collapse navbar-collapse show" v-show="showMenu">
           <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
             <div
               class="search-bar input-group"
               @click="searchModalVisible = true"
             >
-              <!-- <input type="text" class="form-control" placeholder="Search...">
-              <div class="input-group-addon"><i class="tim-icons icon-zoom-split"></i></div> -->
               <button
                 class="btn btn-link"
                 id="search-button"
@@ -53,7 +51,6 @@
               >
                 <i class="tim-icons icon-zoom-split"></i>
               </button>
-              <!-- You can choose types of search input -->
             </div>
             <modal
               :show.sync="searchModalVisible"
@@ -145,17 +142,17 @@
             </base-dropdown>
           </ul>
         </div>
-      </collapse-transition>
+      </transition-expand>
     </div>
   </nav>
 </template>
 <script>
-import { CollapseTransition } from "vue2-transitions";
+import { TransitionExpand } from "@morev/vue-transitions";
 import Modal from "@/components/Modal";
 
 export default {
   components: {
-    CollapseTransition,
+    TransitionExpand,
     Modal,
   },
   computed: {
@@ -198,3 +195,4 @@ export default {
 };
 </script>
 <style></style>
+

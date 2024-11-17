@@ -1,5 +1,5 @@
 <template>
-  <fade-transition>
+  <transition-fade>
     <div
       v-if="visible"
       class="alert"
@@ -23,15 +23,15 @@
         </slot>
       </div>
     </div>
-  </fade-transition>
+  </transition-fade>
 </template>
 <script>
-import { FadeTransition } from "vue2-transitions";
+import { TransitionFade } from "@morev/vue-transitions";
 
 export default {
   name: "base-alert",
   components: {
-    FadeTransition,
+    TransitionFade,
   },
   props: {
     type: {
@@ -62,3 +62,4 @@ export default {
   },
 };
 </script>
+

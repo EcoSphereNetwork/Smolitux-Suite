@@ -1,36 +1,43 @@
 # Smolitux-Suite
 
-A modular visualization platform designed to simplify the management and monitoring of distributed AI infrastructures. Built on Vue.js with the vue-black-dashboard template, Smolitux-Suite provides an interactive GUI for visualizing network hierarchies, real-time status updates, and dynamic routes between chatbots, LLM servers, and databases.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+## ToDo to fix errors:
 
-## Features
+pull branch upgrade_not-finished
+Check Upgrade status and which files have to modify.
+Complete the upgrade
+Update to Vue 3 and its ecosystem (vue-router 4, vuex 4, etc.) with a major rewrite.
+Fix this errors and complete the upgrade:
+Compiled with problems:
+ERROR
+Catch all routes ("*") must now be defined using a param with a custom regexp.
+See more at https://router.vuejs.org/guide/migration/#Removed-star-or-catch-all-routes.
+addRoute@webpack-internal:///./node_modules/vue-router/dist/vue-router.mjs:1500:23
+createRouterMatcher/<@webpack-internal:///./node_modules/vue-router/dist/vue-router.mjs:1665:37
+createRouterMatcher@webpack-internal:///./node_modules/vue-router/dist/vue-router.mjs:1665:12
+createRouter@webpack-internal:///./node_modules/vue-router/dist/vue-router.mjs:3093:40
+@webpack-internal:///./src/router/index.js:8:72
+./src/router/index.js@http://localhost:8081/js/app.js:668:1
+__webpack_require__@http://localhost:8081/js/app.js:2001:32
+fn@http://localhost:8081/js/app.js:2252:21
+@webpack-internal:///./src/main.js:4:90
+./src/main.js@http://localhost:8081/js/app.js:602:1
+__webpack_require__@http://localhost:8081/js/app.js:2001:32
+__webpack_exports__<@http://localhost:8081/js/app.js:3172:109
+__webpack_require__.O@http://localhost:8081/js/app.js:2043:23
+@http://localhost:8081/js/app.js:3173:53
+@http://localhost:8081/js/app.js:3175:12
+ERROR in ./src/components/Charts/BarChart.js 2:0-108
+Module not found: Error: Package path ./dist/Chart.js is not exported from package /home/dev/Data/Suite_branch/Smolitux-Suite/node_modules/chart.js (see exports field in /home/dev/Data/Suite_branch/Smolitux-Suite/node_modules/chart.js/package.json)
+ERROR in ./src/components/Charts/LineChart.js 2:0-123
+Module not found: Error: Package path ./dist/Chart.js is not exported from package /home/dev/Data/Suite_branch/Smolitux-Suite/node_modules/chart.js (see exports field in /home/dev/Data/Suite_branch/Smolitux-Suite/node_modules/chart.js/package.json)
+ERROR in ./node_modules/vue-chartjs/dist/index.js 1:0-185
+Module not found: Error: Package path ./dist/Chart.js is not exported from package /home/dev/Data/Suite_branch/Smolitux-Suite/node_modules/chart.js (see exports field in /home/dev/Data/Suite_branch/Smolitux-Suite/node_modules/chart.js/package.json)Commit and push.
 
-- **Network Hierarchy Visualization**: Interactive visualization of distributed AI system components
-- **Real-Time Monitoring**: Live status updates of system components via WebSocket
-- **Dynamic Route Management**: Visual management of connections between system components
-- **Mini-Chat Window**: Integrated chat functionality for component communication
-- **Configuration Interface**: User-friendly menus for system configuration
-- **Responsive Design**: Adapts to different screen sizes and devices
 
 
-### Project Overview
+##########################################################
 
-The primary purpose of Smolitux-Suite is to offer an intuitive and responsive interface for managing complex AI systems. It serves organizations that rely on distributed architectures, making it easier to visualize and manage relationships between components, monitor performance, and handle real-time updates seamlessly.
-Key Features
-
-- **Network Hierarchy Visualization:**
-      Interactive visualization of distributed AI system components.
-- **Real-Time Monitoring:**
-      Live status updates of system components via WebSocket.
-- **Dynamic Route Management:**
-      Visual tools for managing connections between system components.
-- **Integrated Chat Window:**
-      Functionality to interact with components in real time.
-- **Configuration Interface:**
-      User-friendly menus for configuring system parameters.
-- **Responsive Design:**
-      Adapted to various screen sizes and device types.
 
 ### Installation
 **Prerequisites**

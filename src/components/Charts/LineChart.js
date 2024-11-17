@@ -1,9 +1,11 @@
-import { Line, mixins } from "vue-chartjs";
+import { Line } from 'vue-chartjs';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 export default {
   name: "line-chart",
-  extends: Line,
-  mixins: [mixins.reactiveProp],
+  components: { Line },
   props: {
     extraOptions: Object,
     gradientColors: {
@@ -25,45 +27,24 @@ export default {
       },
     },
   },
-  data() {
-    return {
-      ctx: null,
-    };
-  },
-  methods: {
-    updateGradients(chartData) {
+  setup(props) {
+    const updateGradients = (chartData) => {
       if (!chartData) return;
-      const ctx =
-        this.ctx || document.getElementById(this.chartId).getContext("2d");
+      const canvas = document.querySelector('canvas');
+      if (!canvas) return;
+      
+      const ctx = canvas.getContext('2d');
       const gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
 
-      gradientStroke.addColorStop(
-        this.gradientStops[0],
-        this.gradientColors[0]
-      );
-      gradientStroke.addColorStop(
-        this.gradientStops[1],
-        this.gradientColors[1]
-      );
-      gradientStroke.addColorStop(
-        this.gradientStops[2],
-        this.gradientColors[2]
-      );
+      gradientStroke.addColorStop(props.gradientStops[0], props.gradientColors[0]);
+      gradientStroke.addColorStop(props.gradientStops[1], props.gradientColors[1]);
+      gradientStroke.addColorStop(props.gradientStops[2], props.gradientColors[2]);
+
       chartData.datasets.forEach((set) => {
         set.backgroundColor = gradientStroke;
       });
-    },
-  },
-  mounted() {
-    this.$watch(
-      "chartData",
-      (newVal, oldVal) => {
-        this.updateGradients(this.chartData);
-        if (!oldVal) {
-          this.renderChart(this.chartData, this.extraOptions);
-        }
-      },
-      { immediate: true }
-    );
+    };
+
+    return { updateGradients };
   },
 };
