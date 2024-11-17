@@ -1,5 +1,5 @@
 <template>
-  <SlideYUpTransition :duration="animationDuration">
+  <transition-slide>
     <div
       class="modal fade"
       @click.self="closeModal"
@@ -58,15 +58,15 @@
         </div>
       </div>
     </div>
-  </SlideYUpTransition>
+  </transition-slide>
 </template>
 <script>
-import { SlideYUpTransition } from "@morev/vue-transitions";
+import { TransitionSlide } from "@morev/vue-transitions";
 
 export default {
   name: "modal",
   components: {
-    SlideYUpTransition,
+    TransitionSlide,
   },
   props: {
     show: Boolean,
@@ -140,3 +140,4 @@ export default {
   background-color: rgba(0, 0, 0, 0.3);
 }
 </style>
+

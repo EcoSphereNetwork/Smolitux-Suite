@@ -6,7 +6,7 @@ module.exports = {
     // Set up all the aliases we use in our app.
     resolve: {
       alias: {
-        "chart.js": "chart.js/dist/Chart.js",
+        "chart.js": "chart.js",
       },
     },
     plugins: [
@@ -35,3 +35,4 @@ module.exports = {
     sourceMap: process.env.NODE_ENV !== "production",
   },
 };
+
