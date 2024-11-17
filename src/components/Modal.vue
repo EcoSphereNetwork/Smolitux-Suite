@@ -61,7 +61,7 @@
   </SlideYUpTransition>
 </template>
 <script>
-import { SlideYUpTransition } from "vue2-transitions";
+import { SlideYUpTransition } from "@morev/vue-transitions";
 
 export default {
   name: "modal",

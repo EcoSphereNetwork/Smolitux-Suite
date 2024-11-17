@@ -150,7 +150,7 @@
   </nav>
 </template>
 <script>
-import { CollapseTransition } from "vue2-transitions";
+import { CollapseTransition } from "@morev/vue-transitions";
 import Modal from "@/components/Modal";
 
 export default {
