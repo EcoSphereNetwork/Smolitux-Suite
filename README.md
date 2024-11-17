@@ -3,8 +3,10 @@
 
 ## ToDo to fix errors:
 
-**NEXT PROMPT**
-
+pull branch upgrade_not-finished
+Check Upgrade status and which files have to modify.
+Complete the upgrade
+Update to Vue 3 and its ecosystem (vue-router 4, vuex 4, etc.) with a major rewrite.
 Fix this errors and complete the upgrade:
 
 Compiled with problems:
@@ -60,6 +62,8 @@ ERROR in ./src/layout/dashboard/TopNavbar.vue?vue&type=script&lang=js (./node_mo
 Module not found: Error: Can't resolve 'vue2-transitions' in '/home/dev/Data/Suite_branch/Smolitux-Suite/src/layout/dashboard'
 ERROR in ./node_modules/vue-chartjs/dist/index.js 1:0-185
 Module not found: Error: Package path ./dist/Chart.js is not exported from package /home/dev/Data/Suite_branch/Smolitux-Suite/node_modules/chart.js (see exports field in /home/dev/Data/Suite_branch/Smolitux-Suite/node_modules/chart.js/package.json) 
+
+Commit and push.
 
 
 
