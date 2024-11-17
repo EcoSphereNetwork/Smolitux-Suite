@@ -26,7 +26,10 @@
       <slot> </slot>
       <ul class="nav">
         <!--By default vue-router adds an active class to each route link. This way the links are colored when clicked-->
-        <slot name="links">
+        <template v-if="$slots.links">
+          <slot name="links"></slot>
+        </template>
+        <template v-else>
           <sidebar-link
             v-for="(link, index) in sidebarLinks"
             :key="index"
@@ -35,7 +38,7 @@
             :icon="link.icon"
           >
           </sidebar-link>
-        </slot>
+        </template>
       </ul>
     </div>
   </div>
@@ -121,7 +124,7 @@ export default {
       });
     },
     addLink(link) {
-      const index = this.$slots.links.indexOf(link.$vnode);
+      const index = this.links.length;
       this.links.splice(index, 0, link);
     },
     removeLink(link) {
@@ -138,3 +141,4 @@ export default {
   },
 };
 </script>
+

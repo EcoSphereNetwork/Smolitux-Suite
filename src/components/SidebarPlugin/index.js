@@ -13,6 +13,7 @@ const SidebarStore = reactive({
 const SidebarPlugin = {
   install(app) {
     app.config.globalProperties.$sidebar = SidebarStore;
+    app.provide('$sidebar', SidebarStore);
     app.component("side-bar", Sidebar);
     app.component("sidebar-link", SidebarLink);
   },
