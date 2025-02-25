@@ -13,6 +13,7 @@ In einer Welt, in der Effizienz und Integration entscheidend sind, bietet die Sm
 
 Zeitplan:
 
+    Phase 1
     Monat 1-2: Anforderungsanalyse und Planung
         Definition der funktionalen und nicht-funktionalen Anforderungen.
         Erstellung eines detaillierten Projektplans mit Meilensteinen.
@@ -21,6 +22,7 @@ Zeitplan:
         Implementierung von Textverarbeitungs-, Tabellenkalkulations- und Präsentationstools.
         Entwicklung einer einheitlichen Benutzeroberfläche für alle Anwendungen.
 
+    Phase 2
     Monat 5-6: Integration von Cloud-Diensten
         Anbindung an gängige Cloud-Speicherlösungen für die Dateisynchronisation.
         Sicherstellung der Datenkonsistenz und -sicherheit bei der Synchronisation.
@@ -33,6 +35,7 @@ Zeitplan:
         Durchführung umfangreicher Tests zur Sicherstellung der Funktionalität und Benutzerfreundlichkeit.
         Behebung identifizierter Probleme und Optimierung der Performance.
 
+    Phase 3
     Monat 9: Dokumentation und Schulung
         Erstellung von Benutzerhandbüchern und technischen Dokumentationen.
         Anbieten von Schulungen und Tutorials für Endbenutzer.
